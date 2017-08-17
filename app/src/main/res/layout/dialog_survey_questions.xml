@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" >
+
+    <RelativeLayout
+        android:id="@+id/dialog_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@color/top_bar_color" >
+
+        <TextView
+            android:id="@+id/dialog_top_bar_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Survey Answers"
+            android:textColor="@color/top_bar_label_color"
+            android:textSize="@dimen/top_bar_label_text_size" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/item_type_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/dialog_top_bar"
+        android:layout_above="@+id/dialog_bottom_bar"
+        android:divider="@null"
+        android:dividerHeight="0dp" >
+    </ListView>
+
+    <RelativeLayout
+        android:id="@+id/dialog_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/top_bar_color"
+        android:clickable="true" >
+
+        <TextView
+            android:id="@+id/dialog_bottom_bar_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Cancel"
+            android:textColor="@color/top_bar_label_color"
+            android:textSize="@dimen/button_text_size" />
+    </RelativeLayout>
+
+</RelativeLayout>

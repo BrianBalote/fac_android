@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@color/top_bar_color">
+
+        <TextView
+            android:id="@+id/back_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:clickable="false"
+            android:text="Fujitsu Asia Conference"
+            android:textColor="@color/top_bar_button_label_color"
+            android:textSize="@dimen/button_text_size" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/row_1"
+        style="@style/FacIconRow"
+        android:layout_below="@+id/top_bar">
+
+        <RelativeLayout
+            android:id="@+id/agenda_btn"
+            style="@style/FacIconContainer">
+
+            <ImageView
+                android:id="@+id/agenda_img"
+                style="@style/FacIconImage"
+                android:src="@drawable/ic_agenda" />
+
+            <TextView
+                style="@style/FacIconText"
+                android:layout_below="@+id/agenda_img"
+                android:text="Agenda" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/speakers_btn"
+            style="@style/FacIconContainer">
+
+            <ImageView
+                android:id="@+id/speakers_img"
+                style="@style/FacIconImage"
+                android:src="@drawable/ic_speakers" />
+
+            <TextView
+                style="@style/FacIconText"
+                android:layout_below="@+id/speakers_img"
+                android:text="Speakers" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/sponsors_btn"
+            style="@style/FacIconContainer">
+
+            <ImageView
+                android:id="@+id/sponsors_img"
+                style="@style/FacIconImage"
+                android:src="@drawable/ic_sponsors" />
+
+            <TextView
+                style="@style/FacIconText"
+                android:layout_below="@+id/sponsors_img"
+                android:text="Sponsors" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row_2"
+        style="@style/FacIconRow"
+        android:layout_below="@+id/row_1">
+
+        <RelativeLayout
+            android:id="@+id/social_btn"
+            style="@style/FacIconContainer">
+
+            <ImageView
+                android:id="@+id/social_img"
+                style="@style/FacIconImage"
+                android:src="@drawable/ic_social" />
+
+            <TextView
+                style="@style/FacIconText"
+                android:layout_below="@+id/social_img"
+                android:text="Social" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/faqs_btn"
+            style="@style/FacIconContainer">
+
+            <ImageView
+                android:id="@+id/faqs_img"
+                style="@style/FacIconImage"
+                android:src="@drawable/ic_faqs" />
+
+            <TextView
+                style="@style/FacIconText"
+                android:layout_below="@+id/faqs_img"
+                android:text="FAQs" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/feedback_btn"
+            style="@style/FacIconContainer">
+
+            <ImageView
+                android:id="@+id/feedback_img"
+                style="@style/FacIconImage"
+                android:src="@drawable/ic_feedback" />
+
+            <TextView
+                style="@style/FacIconText"
+                android:layout_below="@+id/feedback_img"
+                android:text="Questions" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row_3"
+        style="@style/FacIconRow"
+        android:layout_below="@+id/row_2">
+
+        <RelativeLayout
+            android:id="@+id/survey_btn"
+            style="@style/FacIconContainer">
+
+            <ImageView
+                android:id="@+id/survey_img"
+                style="@style/FacIconImage"
+                android:src="@drawable/ic_survey" />
+
+            <TextView
+                style="@style/FacIconText"
+                android:layout_below="@+id/survey_img"
+                android:text="Survey" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/settings_btn"
+            style="@style/FacIconContainer">
+
+            <ImageView
+                android:id="@+id/settings_img"
+                style="@style/FacIconImage"
+                android:src="@drawable/ic_settings" />
+
+            <TextView
+                style="@style/FacIconText"
+                android:layout_below="@+id/settings_img"
+                android:text="Settings" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/map_btn"
+            style="@style/FacIconContainer">
+
+            <ImageView
+                android:id="@+id/map_img"
+                style="@style/FacIconImage"
+                android:src="@drawable/ic_map" />
+
+            <TextView
+                style="@style/FacIconText"
+                android:layout_below="@+id/map_img"
+                android:text="Map" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Fujitsu World Tour PH</string>
+    <string name="SHARED_PREF_KEY">Fujitsu_FAC_key</string>
+    <string name="SHARED_PREF_NAME">Fujitsu_FAC_shared_pref</string>
+
+    <string name="facebook_app_id">322790324449870</string>
+    <string name="fb_login_protocol_scheme">fb322790324449870</string>
+
+    <string name="title_activity_maps">Map</string>
+</resources>
