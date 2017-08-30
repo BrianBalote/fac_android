@@ -19,7 +19,7 @@
             android:clickable="false"
             android:text="Fujitsu Asia Conference"
             android:textColor="@color/top_bar_button_label_color"
-            android:textSize="@dimen/button_text_size" />
+            android:textSize="@dimen/top_bar_label_text_size" />
 
     </RelativeLayout>
 

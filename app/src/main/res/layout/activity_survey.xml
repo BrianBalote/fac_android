@@ -29,7 +29,7 @@
                 android:clickable="false"
                 android:text="Back"
                 android:textColor="@color/top_bar_button_label_color"
-                android:textSize="@dimen/button_text_size" />
+                android:textSize="@dimen/top_bar_button_label_text_size" />
         </FrameLayout>
 
         <TextView
@@ -59,7 +59,7 @@
                 android:clickable="false"
                 android:text="Submit"
                 android:textColor="@color/top_bar_button_label_color"
-                android:textSize="@dimen/button_text_size" />
+                android:textSize="@dimen/top_bar_button_label_text_size" />
         </FrameLayout>
 
     </RelativeLayout>

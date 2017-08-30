@@ -3,8 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="top_bar_height">47dp</dimen>
-    <dimen name="top_bar_label_text_size">27sp</dimen>
-    <dimen name="top_bar_button_label_text_size">20sp</dimen>
+    <dimen name="top_bar_label_text_size">20sp</dimen>
+    <dimen name="top_bar_button_label_text_size">17sp</dimen>
     <dimen name="text_field_corner_radius">3dp</dimen>
     <dimen name="list_item_bottom_border_height">0.75dp</dimen>
     <dimen name="button_text_size">20sp</dimen>
