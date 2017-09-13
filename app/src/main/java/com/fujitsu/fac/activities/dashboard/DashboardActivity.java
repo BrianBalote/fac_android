@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.fujitsu.fac.R;
+import com.fujitsu.fac.activities.about.AboutActivity;
 import com.fujitsu.fac.activities.map.MapActivity;
 import com.fujitsu.fac.activities.agenda.AgendaActivity;
 import com.fujitsu.fac.activities.faqs.FaqsActivity;
@@ -37,8 +38,8 @@ public class DashboardActivity extends RoboActivity {
     @InjectView(R.id.feedback_btn)
     private View feedbackBtn;
 
-    @InjectView(R.id.survey_btn)
-    private View surveyBtn;
+    @InjectView(R.id.about_btn)
+    private View aboutBtn;
 
     @InjectView(R.id.settings_btn)
     private View settingsBtn;
@@ -105,12 +106,12 @@ public class DashboardActivity extends RoboActivity {
             }
         });
 
-        this.surveyBtn.setOnClickListener(new View.OnClickListener(){
+        this.aboutBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, SurveyActivity.class);
+                Intent intent = new Intent(DashboardActivity.this, AboutActivity.class);
                 startActivity(intent);
-                System.out.println("+++ survey btn clicked");
+                System.out.println("+++ about btn clicked");
             }
         });
 

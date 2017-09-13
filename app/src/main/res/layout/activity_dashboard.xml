@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:clickable="false"
-            android:text="Fujitsu Asia Conference"
+            android:text="Fujitsu World Tour Manila"
             android:textColor="@color/top_bar_button_label_color"
             android:textSize="@dimen/top_bar_label_text_size" />
 
@@ -95,7 +95,7 @@
             <TextView
                 style="@style/FacIconText"
                 android:layout_below="@+id/social_img"
-                android:text="Social" />
+                android:text="Social\n" />
 
         </RelativeLayout>
 
@@ -111,7 +111,7 @@
             <TextView
                 style="@style/FacIconText"
                 android:layout_below="@+id/faqs_img"
-                android:text="FAQs" />
+                android:text="FAQs\n" />
 
         </RelativeLayout>
 
@@ -127,7 +127,7 @@
             <TextView
                 style="@style/FacIconText"
                 android:layout_below="@+id/feedback_img"
-                android:text="Questions" />
+                android:text="Questions\nand Requests" />
 
         </RelativeLayout>
 
@@ -139,18 +139,18 @@
         android:layout_below="@+id/row_2">
 
         <RelativeLayout
-            android:id="@+id/survey_btn"
+            android:id="@+id/about_btn"
             style="@style/FacIconContainer">
 
             <ImageView
-                android:id="@+id/survey_img"
+                android:id="@+id/about_img"
                 style="@style/FacIconImage"
-                android:src="@drawable/ic_survey" />
+                android:src="@drawable/ic_about" />
 
             <TextView
                 style="@style/FacIconText"
-                android:layout_below="@+id/survey_img"
-                android:text="Survey" />
+                android:layout_below="@+id/about_img"
+                android:text="About" />
 
         </RelativeLayout>
 
