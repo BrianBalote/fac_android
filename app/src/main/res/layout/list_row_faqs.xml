@@ -23,7 +23,7 @@
             android:paddingStart="10dp"
             android:text="Q: Question"
             android:textColor="#555555"
-            android:textSize="25sp" />
+            android:textSize="@dimen/list_item_title_text_sz" />
 
         <TextView
             android:id="@+id/text_answer"
@@ -36,7 +36,7 @@
             android:paddingRight="0dp"
             android:paddingStart="10dp"
             android:text="A: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-            android:textSize="18sp" />
+            android:textSize="@dimen/list_item_desc_text_sz" />
 
     </LinearLayout>
 

@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.domain.FAQ;
-import com.fujitsu.fac.font.RobotoFontUtil;
 import com.fujitsu.fac.services.EventService;
 
 import java.util.List;
@@ -95,9 +94,6 @@ public class FaqsActivity extends RoboListActivity {
 
             holder.textQuestion.setText(f.getQuestion());
             holder.textAnswer.setText(f.getAnswer());
-
-            holder.textQuestion.setTypeface(RobotoFontUtil.getRobotoLightFont(FaqsActivity.this));
-            holder.textAnswer.setTypeface(RobotoFontUtil.getRobotoLightFont(FaqsActivity.this));
 
             return row;
         }

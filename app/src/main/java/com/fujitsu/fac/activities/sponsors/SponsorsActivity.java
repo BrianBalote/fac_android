@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.domain.Sponsor;
-import com.fujitsu.fac.font.RobotoFontUtil;
 import com.fujitsu.fac.services.EventService;
 
 import java.util.List;
@@ -94,9 +93,6 @@ public class SponsorsActivity extends RoboListActivity {
 
             holder.textName.setText(s.getName());
             holder.textDescription.setText(s.getDescription());
-
-            holder.textName.setTypeface(RobotoFontUtil.getRobotoLightFont(SponsorsActivity.this));
-            holder.textDescription.setTypeface(RobotoFontUtil.getRobotoLightFont(SponsorsActivity.this));
 
             return row;
         }

@@ -127,7 +127,7 @@
             <TextView
                 style="@style/FacIconText"
                 android:layout_below="@+id/feedback_img"
-                android:text="Questions\nand Requests" />
+                android:text="Questions\n Requests" />
 
         </RelativeLayout>
 

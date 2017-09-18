@@ -10,10 +10,7 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.domain.Agenda;
-import com.fujitsu.fac.domain.Speaker;
-import com.fujitsu.fac.font.RobotoFontUtil;
 import com.fujitsu.fac.services.EventService;
-import com.fujitsu.fac.utils.DateTimeUtil;
 
 import java.util.List;
 
@@ -103,25 +100,11 @@ public class AgendaActivity extends RoboListActivity {
             final Agenda a = agendaList.get(position);
 
             holder.textAgendaName.setText(a.getName());
-            holder.textAgendaDate.setText(DateTimeUtil.convertDateToString(a.getDate()));
-            holder.textAgendaStartTime.setText(DateTimeUtil.convertTimeToString(a.getStartTime()));
-            holder.textAgendaEndTime.setText(DateTimeUtil.convertTimeToString(a.getEndTime()));
+            holder.textAgendaDate.setText(a.getDate());
+            holder.textAgendaStartTime.setText(a.getStartTime());
+            holder.textAgendaEndTime.setText(a.getEndTime());
             holder.textAgendaDescription.setText(a.getDescription());
-
-            StringBuilder sb = new StringBuilder();
-            for (Speaker s : a.getSpeakerList()) {
-                sb.append(s.getName());
-                sb.append(" ");
-            }
-
-            holder.textAgendaSpeakers.setText(sb.toString());
-
-            holder.textAgendaName.setTypeface(RobotoFontUtil.getRobotoLightFont(AgendaActivity.this));
-            holder.textAgendaDate.setTypeface(RobotoFontUtil.getRobotoLightFont(AgendaActivity.this));
-            holder.textAgendaStartTime.setTypeface(RobotoFontUtil.getRobotoLightFont(AgendaActivity.this));
-            holder.textAgendaEndTime.setTypeface(RobotoFontUtil.getRobotoLightFont(AgendaActivity.this));
-            holder.textAgendaDescription.setTypeface(RobotoFontUtil.getRobotoLightFont(AgendaActivity.this));
-            holder.textAgendaSpeakers.setTypeface(RobotoFontUtil.getRobotoLightFont(AgendaActivity.this));
+            holder.textAgendaSpeakers.setText(a.getSpeakers());
 
             return row;
         }

@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.domain.Speaker;
-import com.fujitsu.fac.font.RobotoFontUtil;
 import com.fujitsu.fac.services.EventService;
 
 import java.util.List;
@@ -99,11 +98,6 @@ public class SpeakersActivity extends RoboListActivity {
             holder.textPosition.setText(s.getPosition());
             holder.textCompany.setText(s.getCompany());
             holder.textBio.setText(s.getBio());
-
-            holder.textName.setTypeface(RobotoFontUtil.getRobotoLightFont(SpeakersActivity.this));
-            holder.textPosition.setTypeface(RobotoFontUtil.getRobotoLightFont(SpeakersActivity.this));
-            holder.textCompany.setTypeface(RobotoFontUtil.getRobotoLightFont(SpeakersActivity.this));
-            holder.textBio.setTypeface(RobotoFontUtil.getRobotoLightFont(SpeakersActivity.this));
 
             return row;
         }

@@ -23,15 +23,8 @@
 
         <TextView
             android:id="@+id/text_agenda_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="0dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="0dp"
-            android:paddingStart="10dp"
-            android:text="Agenda Name"
-            android:textColor="#555555"
-            android:textSize="25sp" />
+            style="@style/ListItemTitle"
+            android:text="Agenda Name" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -50,7 +43,7 @@
                 android:paddingRight="0dp"
                 android:paddingStart="10dp"
                 android:text="Agenda Date"
-                android:textSize="15sp" />
+                android:textSize="@dimen/list_item_desc_text_sz" />
 
             <TextView
                 android:id="@+id/text_agenda_start_time"
@@ -60,8 +53,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="0dp"
                 android:paddingStart="10dp"
-                android:text="Agenda Start Time"
-                android:textSize="15sp" />
+                android:text="Start Time"
+                android:textSize="@dimen/list_item_desc_text_sz" />
 
             <TextView
                 android:id="@+id/text_agenda_end_time"
@@ -71,8 +64,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="0dp"
                 android:paddingStart="10dp"
-                android:text="Agenda End Time"
-                android:textSize="15sp" />
+                android:text="End Time"
+                android:textSize="@dimen/list_item_desc_text_sz" />
 
         </LinearLayout>
 
@@ -85,7 +78,7 @@
             android:paddingRight="0dp"
             android:paddingStart="10dp"
             android:text="Agenda Speakers"
-            android:textSize="15sp" />
+            android:textSize="@dimen/list_item_desc_text_sz" />
 
         <TextView
             android:id="@+id/text_agenda_description"
@@ -96,17 +89,9 @@
             android:paddingRight="0dp"
             android:paddingStart="10dp"
             android:text="Agenda Description"
-            android:textSize="15sp" />
+            android:textSize="@dimen/list_item_desc_text_sz" />
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:padding="10dp"
-        android:src="@drawable/ic_action_chevron_right" />
 
     <View
         android:id="@+id/list_item_bottom_border"
@@ -114,6 +99,5 @@
         android:layout_height="0.75dp"
         android:layout_alignParentBottom="true"
         android:background="@color/list_item_bottom_border_color" />
-
 
 </RelativeLayout>
