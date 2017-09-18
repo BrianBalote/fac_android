@@ -6,15 +6,14 @@ package com.fujitsu.fac.domain;
 
 public class Agenda {
 
-    private String name;
-    private String date;
-    private String startTime;
-    private String endTime;
-    private String speakers;
-    private String description;
+    private String name = "";
+    private String date = "";
+    private String startTime = "";
+    private String endTime = "";
+    private String speakers = "";
+    private String description = "";
 
     public Agenda() {
-
     }
 
     public String getName() {

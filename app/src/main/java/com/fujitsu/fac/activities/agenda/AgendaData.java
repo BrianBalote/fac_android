@@ -49,7 +49,7 @@ public class AgendaData {
         a4.setName("Business Session");
         a4.setDate("Oct 10, 2017");
         a4.setStartTime("01:00 PM");
-        a4.setStartTime("to 03:30 PM");
+        a4.setEndTime("to 03:30 PM");
         a4.setSpeakers("Speakers: n/a");
         a4.setDescription("Topics are: Internet of Things (IoT), Cyber Security and Mobility.");
         this.agendaList.add(a4);
