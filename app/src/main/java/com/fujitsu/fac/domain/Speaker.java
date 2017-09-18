@@ -6,10 +6,10 @@ package com.fujitsu.fac.domain;
 
 public class Speaker {
 
-    private String name;
-    private String company;
-    private String position;
-    private String bio;
+    private String name = "";
+    private String company = "";
+    private String position = "";
+    private String bio = "";
 
     public Speaker() {
     }

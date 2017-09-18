@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.domain.Speaker;
-import com.fujitsu.fac.services.EventService;
 
 import java.util.List;
 
@@ -28,7 +27,9 @@ public class SpeakersActivity extends RoboListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speakers);
 
-        List<Speaker> speakerList = EventService.getInstance().getCurrentEvent().getSpeakerList();
+        SpeakersData speakersData = new SpeakersData();
+
+        List<Speaker> speakerList = speakersData.getSpeakerList();
 
         SpeakersListAdapter speakersListAdapter = new SpeakersListAdapter(R.layout.list_row_speakers, speakerList);
         this.setListAdapter(speakersListAdapter);
@@ -98,6 +99,10 @@ public class SpeakersActivity extends RoboListActivity {
             holder.textPosition.setText(s.getPosition());
             holder.textCompany.setText(s.getCompany());
             holder.textBio.setText(s.getBio());
+
+            if(s.getBio().length() <= 0) {
+                holder.textBio.setVisibility(View.GONE);
+            }
 
             return row;
         }

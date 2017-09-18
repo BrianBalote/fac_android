@@ -15,14 +15,10 @@ public class EventService {
     private EventService() {
     }
 
-    private EventService(boolean forTesting) {
-        this.currentEvent = new Event(true);
-    }
-
     public static EventService getInstance() {
 
         if(instance == null) {
-            instance = new EventService(true);
+            instance = new EventService();
         }
 
         return instance;

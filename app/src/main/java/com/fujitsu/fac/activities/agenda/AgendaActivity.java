@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.domain.Agenda;
-import com.fujitsu.fac.services.EventService;
 
 import java.util.List;
 
@@ -29,7 +28,8 @@ public class AgendaActivity extends RoboListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agenda);
 
-        List<Agenda> agendaList = EventService.getInstance().getCurrentEvent().getAgendaList();
+        AgendaData agendaData = new AgendaData();
+        List<Agenda> agendaList = agendaData.getAgendaList();
 
         AgendaListAdapter agendaListAdapter = new AgendaListAdapter(R.layout.list_row_agenda, agendaList);
 

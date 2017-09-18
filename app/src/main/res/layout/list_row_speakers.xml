@@ -25,47 +25,30 @@
 
         <TextView
             android:id="@+id/text_name"
+            android:text="Speaker Name"
+            style="@style/ListItemTitle" />
+
+        <TextView
+            android:id="@+id/text_position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingEnd="0dp"
             android:paddingLeft="10dp"
             android:paddingRight="0dp"
             android:paddingStart="10dp"
-            android:text="Speaker Name"
-            android:textColor="#555555"
-            android:textSize="@dimen/list_item_title_text_sz" />
+            android:text="Position"
+            android:textSize="@dimen/list_item_desc_text_sz" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/text_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/agenda_icon"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp">
-
-            <TextView
-                android:id="@+id/text_position"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingEnd="0dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="0dp"
-                android:paddingStart="10dp"
-                android:text="Position, "
-                android:textSize="@dimen/list_item_desc_text_sz" />
-
-            <TextView
-                android:id="@+id/text_company"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingEnd="0dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="0dp"
-                android:paddingStart="10dp"
-                android:text="Company"
-                android:textSize="@dimen/list_item_desc_text_sz" />
-
-        </LinearLayout>
+            android:paddingEnd="0dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="0dp"
+            android:paddingStart="10dp"
+            android:text="Company"
+            android:textSize="@dimen/list_item_desc_text_sz" />
 
         <TextView
             android:id="@+id/text_bio"
