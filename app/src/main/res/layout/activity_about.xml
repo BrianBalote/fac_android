@@ -43,4 +43,9 @@
 
     </RelativeLayout>
 
+    <ListView
+        android:layout_below="@+id/top_bar"
+        android:id="@android:id/list"
+        style="@style/ListViewStyle" />
+
 </RelativeLayout>

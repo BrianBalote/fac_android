@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.domain.FAQ;
-import com.fujitsu.fac.services.EventService;
 
 import java.util.List;
 
@@ -27,9 +26,9 @@ public class FaqsActivity extends RoboListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faqs);
 
-        List<FAQ> faqList = EventService.getInstance().getCurrentEvent().getFaqList();
+        FaqsData faqsData = new FaqsData();
 
-        FaqsListAdapter faqsListAdapter = new FaqsListAdapter(R.layout.list_row_faqs, faqList);
+        FaqsListAdapter faqsListAdapter = new FaqsListAdapter(R.layout.list_row_faqs, faqsData.getFaqList());
         this.setListAdapter(faqsListAdapter);
 
         this.backBtn.setOnClickListener(new View.OnClickListener() {
