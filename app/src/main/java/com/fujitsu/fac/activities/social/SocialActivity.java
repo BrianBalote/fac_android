@@ -2,51 +2,36 @@ package com.fujitsu.fac.activities.social;
 
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.fujitsu.fac.R;
 
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 
+import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
+
 public class SocialActivity extends RoboActivity {
+
+    private static final String MY_URL = "https://touch.facebook.com/fujitsuPH/";
 
     @InjectView(R.id.back_button)
     private View backBtn;
 
-    @InjectView(R.id.login_button)
-    private LoginButton fbLoginBtn;
-
-    private CallbackManager callbackManager;
+    @InjectView(R.id.my_web_view)
+    private WebView myWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
 
-        this.callbackManager = CallbackManager.Factory.create();
-
-        this.fbLoginBtn.setReadPermissions("email");
-        this.fbLoginBtn.registerCallback(this.callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                System.out.print("+++ fb login success");
-            }
-
-            @Override
-            public void onCancel() {
-                System.out.print("+++ fb login canceled");
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                System.out.print("+++ fb login error");
-            }
-        });
+        myWebView.setWebViewClient(new MyBrowser());
+        myWebView.getSettings().setLoadsImagesAutomatically(true);
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        myWebView.loadUrl(MY_URL);
 
         this.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +39,17 @@ public class SocialActivity extends RoboActivity {
                 finish();
             }
         });
+    }
+
+    private class MyBrowser extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+            if (url.startsWith(MY_URL)) {
+                view.loadUrl(url);
+            }
+            return true;
+        }
     }
 
 }

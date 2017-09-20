@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shopping_list_row_container"
+    style="@style/ListItemContainer">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/text_topic"
+        style="@style/ListItemTitle"
+        android:text="Ask about Topic XYZ" />
+
+</RelativeLayout>
