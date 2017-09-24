@@ -1,6 +1,11 @@
 package com.fujitsu.fac.activities.speakers;
 
+import android.app.ListActivity;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +17,12 @@ import android.widget.TextView;
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.domain.Speaker;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
-import roboguice.activity.RoboListActivity;
-import roboguice.inject.InjectView;
+public class SpeakersActivity extends ListActivity {
 
-public class SpeakersActivity extends RoboListActivity {
-
-    @InjectView(R.id.back_button)
     private View backBtn;
 
     @Override
@@ -27,19 +30,19 @@ public class SpeakersActivity extends RoboListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speakers);
 
-        SpeakersData speakersData = new SpeakersData();
-
-        List<Speaker> speakerList = speakersData.getSpeakerList();
-
-        SpeakersListAdapter speakersListAdapter = new SpeakersListAdapter(R.layout.list_row_speakers, speakerList);
-        this.setListAdapter(speakersListAdapter);
-
-        this.backBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn = (View) findViewById(R.id.back_button);
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        SpeakersData speakersData = new SpeakersData();
+        List<Speaker> speakerList = speakersData.getSpeakerList();
+
+        SpeakersListAdapter speakersListAdapter = new SpeakersListAdapter(R.layout.list_row_speakers, speakerList);
+        setListAdapter(speakersListAdapter);
     }
 
     private class SpeakersListAdapter extends BaseAdapter {
@@ -104,6 +107,9 @@ public class SpeakersActivity extends RoboListActivity {
                 holder.textBio.setVisibility(View.GONE);
             }
 
+            Bitmap b = loadBitmapFromAssets(s.getImageSrc());
+            holder.imgPortrait.setImageBitmap(b);
+
             return row;
         }
 
@@ -116,4 +122,17 @@ public class SpeakersActivity extends RoboListActivity {
             TextView textBio;
         }
     }
+
+    private Bitmap loadBitmapFromAssets(String imageName) {
+        try {
+            InputStream is = getAssets().open(imageName);
+            Bitmap bitmap = BitmapFactory.decodeStream(is);
+            is.close();
+            return bitmap;
+        }
+        catch(IOException ex) {
+            return null;
+        }
+    }
+
 }

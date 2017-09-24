@@ -1,5 +1,6 @@
 package com.fujitsu.fac.activities.faqs;
 
+import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,12 +14,8 @@ import com.fujitsu.fac.domain.FAQ;
 
 import java.util.List;
 
-import roboguice.activity.RoboListActivity;
-import roboguice.inject.InjectView;
+public class FaqsActivity extends ListActivity {
 
-public class FaqsActivity extends RoboListActivity {
-
-    @InjectView(R.id.back_button)
     private View backBtn;
 
     @Override
@@ -26,17 +23,18 @@ public class FaqsActivity extends RoboListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faqs);
 
-        FaqsData faqsData = new FaqsData();
-
-        FaqsListAdapter faqsListAdapter = new FaqsListAdapter(R.layout.list_row_faqs, faqsData.getFaqList());
-        this.setListAdapter(faqsListAdapter);
-
-        this.backBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn = (View) findViewById(R.id.back_button);
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        FaqsData faqsData = new FaqsData();
+
+        FaqsListAdapter faqsListAdapter = new FaqsListAdapter(R.layout.list_row_faqs, faqsData.getFaqList());
+        setListAdapter(faqsListAdapter);
     }
 
     private class FaqsListAdapter extends BaseAdapter {

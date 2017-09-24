@@ -1,7 +1,9 @@
 package com.fujitsu.fac.activities.about;
 
+import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +15,8 @@ import com.fujitsu.fac.domain.About;
 
 import java.util.List;
 
-import roboguice.activity.RoboListActivity;
-import roboguice.inject.InjectView;
+public class AboutActivity extends ListActivity {
 
-public class AboutActivity extends RoboListActivity {
-
-    @InjectView(R.id.back_button)
     private View backBtn;
 
     @Override
@@ -26,18 +24,21 @@ public class AboutActivity extends RoboListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        AboutData aboutData = new AboutData();
-
-        AboutListAdapter faqsListAdapter = new AboutListAdapter(R.layout.list_row_about, aboutData.getAboutList());
-        this.setListAdapter(faqsListAdapter);
-
+        this.backBtn = (View) findViewById(R.id.back_button);
         this.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        AboutData aboutData = new AboutData();
+        List<About> aboutList = aboutData.getAboutList();
+
+        AboutListAdapter aboutListAdapter = new AboutListAdapter(R.layout.list_row_about, aboutList);
+        this.setListAdapter(aboutListAdapter);
     }
+
     private class AboutListAdapter extends BaseAdapter {
 
         private int viewResourceId;
@@ -92,6 +93,14 @@ public class AboutActivity extends RoboListActivity {
 
             holder.textAbout.setText(f.getAbout());
             holder.textDetails.setText(f.getDetails());
+
+            if(!TextUtils.isEmpty(f.getAbout())) {
+                holder.textAbout.setVisibility(View.VISIBLE);
+            }
+
+            if(!TextUtils.isEmpty(f.getDetails())) {
+                holder.textDetails.setVisibility(View.VISIBLE);
+            }
 
             return row;
         }

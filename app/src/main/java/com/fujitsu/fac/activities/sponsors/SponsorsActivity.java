@@ -1,16 +1,13 @@
 package com.fujitsu.fac.activities.sponsors;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
 import com.fujitsu.fac.R;
 
-import roboguice.activity.RoboActivity;
-import roboguice.inject.InjectView;
+public class SponsorsActivity extends Activity {
 
-public class SponsorsActivity extends RoboActivity {
-
-    @InjectView(R.id.back_button)
     private View backBtn;
 
     @Override
@@ -18,13 +15,12 @@ public class SponsorsActivity extends RoboActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sponsors);
 
-        this.backBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn = (View) findViewById(R.id.back_button);
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
     }
-
-
 }

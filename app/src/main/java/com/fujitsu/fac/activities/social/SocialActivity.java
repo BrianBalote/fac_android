@@ -1,5 +1,6 @@
 package com.fujitsu.fac.activities.social;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -7,19 +8,11 @@ import android.webkit.WebViewClient;
 
 import com.fujitsu.fac.R;
 
-import roboguice.activity.RoboActivity;
-import roboguice.inject.InjectView;
-
-import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
-
-public class SocialActivity extends RoboActivity {
+public class SocialActivity extends Activity {
 
     private static final String MY_URL = "https://touch.facebook.com/fujitsuPH/";
 
-    @InjectView(R.id.back_button)
     private View backBtn;
-
-    @InjectView(R.id.my_web_view)
     private WebView myWebView;
 
     @Override
@@ -27,13 +20,15 @@ public class SocialActivity extends RoboActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
 
+        myWebView = (WebView) findViewById(R.id.my_web_view);
         myWebView.setWebViewClient(new MyBrowser());
         myWebView.getSettings().setLoadsImagesAutomatically(true);
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         myWebView.loadUrl(MY_URL);
 
-        this.backBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn = (View) findViewById(R.id.back_button);
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

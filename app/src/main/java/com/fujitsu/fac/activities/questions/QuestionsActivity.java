@@ -1,6 +1,7 @@
 package com.fujitsu.fac.activities.questions;
 
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -14,10 +15,7 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 
-import roboguice.activity.RoboListActivity;
-import roboguice.inject.InjectView;
-
-public class QuestionsActivity extends RoboListActivity {
+public class QuestionsActivity extends ListActivity {
 
     private static final String[] topics = {"Ask something about the Opening Speech.",
             "Ask something about Human Centric Innovation.",
@@ -29,7 +27,6 @@ public class QuestionsActivity extends RoboListActivity {
             "Inquire about Fujitsu's Products and Services",
             "Other questions or requests."};
 
-    @InjectView(R.id.back_button)
     private View backBtn;
 
     @Override
@@ -37,15 +34,16 @@ public class QuestionsActivity extends RoboListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
 
-        QuestionListAdapter questionListAdapter = new QuestionListAdapter(R.layout.list_row_question_topic, topics);
-        this.setListAdapter(questionListAdapter);
-
-        this.backBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn = (View) findViewById(R.id.back_button);
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        QuestionListAdapter questionListAdapter = new QuestionListAdapter(R.layout.list_row_question_topic, topics);
+        setListAdapter(questionListAdapter);
     }
 
     private class QuestionListAdapter extends BaseAdapter {

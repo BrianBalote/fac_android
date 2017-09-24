@@ -9,16 +9,10 @@ public class Speaker {
     private String name = "";
     private String company = "";
     private String position = "";
+    private String imageSrc = "";
     private String bio = "";
 
     public Speaker() {
-    }
-
-    public Speaker(boolean forTesting) {
-        this.name = "Firstname Lastname";
-        this.company = "Company";
-        this.position = "Position, ";
-        this.bio = "Bio: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
     }
 
     public String getName() {
@@ -51,5 +45,13 @@ public class Speaker {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getImageSrc() {
+        return imageSrc;
+    }
+
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
     }
 }

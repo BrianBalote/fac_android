@@ -1,16 +1,16 @@
 package com.fujitsu.fac.activities.splash;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.activities.dashboard.DashboardActivity;
 import com.fujitsu.fac.activities.registration.RegistrationActivity;
 import com.fujitsu.fac.services.RegistrationService;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends Activity {
 
     private Handler mHandler;
 
