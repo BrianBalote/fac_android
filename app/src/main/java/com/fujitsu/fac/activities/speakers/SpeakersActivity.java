@@ -2,10 +2,8 @@ package com.fujitsu.fac.activities.speakers;
 
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,10 +36,7 @@ public class SpeakersActivity extends ListActivity {
             }
         });
 
-        SpeakersData speakersData = new SpeakersData();
-        List<Speaker> speakerList = speakersData.getSpeakerList();
-
-        SpeakersListAdapter speakersListAdapter = new SpeakersListAdapter(R.layout.list_row_speakers, speakerList);
+        SpeakersListAdapter speakersListAdapter = new SpeakersListAdapter(R.layout.list_row_speakers, SpeakersData.getInstance().getSpeakerList());
         setListAdapter(speakersListAdapter);
     }
 

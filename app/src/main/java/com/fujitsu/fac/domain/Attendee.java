@@ -12,6 +12,7 @@ public class Attendee {
     private String company = "";
     private String position = "";
     private String phone = "";
+    private String mobile = "";
     private String role = "";
 
     public Attendee() {
@@ -71,6 +72,14 @@ public class Attendee {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     @Override

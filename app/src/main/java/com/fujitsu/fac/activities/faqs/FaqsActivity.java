@@ -31,9 +31,7 @@ public class FaqsActivity extends ListActivity {
             }
         });
 
-        FaqsData faqsData = new FaqsData();
-
-        FaqsListAdapter faqsListAdapter = new FaqsListAdapter(R.layout.list_row_faqs, faqsData.getFaqList());
+        FaqsListAdapter faqsListAdapter = new FaqsListAdapter(R.layout.list_row_faqs, FaqsData.getInstance().getFaqList());
         setListAdapter(faqsListAdapter);
     }
 

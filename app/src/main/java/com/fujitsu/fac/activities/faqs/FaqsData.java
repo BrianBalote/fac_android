@@ -13,7 +13,16 @@ public class FaqsData {
 
     private List<FAQ> faqList;
 
-    public FaqsData() {
+    private static FaqsData instance = null;
+
+    public static FaqsData getInstance() {
+        if(instance == null) {
+            instance = new FaqsData();
+        }
+        return instance;
+    }
+
+    private FaqsData() {
 
         this.faqList = new ArrayList<FAQ>(10);
 

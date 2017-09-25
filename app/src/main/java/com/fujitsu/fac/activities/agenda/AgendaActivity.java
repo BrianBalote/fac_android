@@ -1,5 +1,6 @@
 package com.fujitsu.fac.activities.agenda;
 
+import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,14 +14,10 @@ import com.fujitsu.fac.domain.Agenda;
 
 import java.util.List;
 
-import roboguice.activity.RoboListActivity;
-import roboguice.inject.InjectView;
-
-public class AgendaActivity extends RoboListActivity {
+public class AgendaActivity extends ListActivity {
 
     private static final String TAG = "AgendaActivity";
 
-    @InjectView(R.id.back_button)
     private View backBtn;
 
     @Override
@@ -28,19 +25,16 @@ public class AgendaActivity extends RoboListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agenda);
 
-        AgendaData agendaData = new AgendaData();
-        List<Agenda> agendaList = agendaData.getAgendaList();
-
-        AgendaListAdapter agendaListAdapter = new AgendaListAdapter(R.layout.list_row_agenda, agendaList);
-
-        this.setListAdapter(agendaListAdapter);
-
-        this.backBtn.setOnClickListener(new View.OnClickListener() {
+        backBtn = (View) findViewById(R.id.back_button);
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        AgendaListAdapter agendaListAdapter = new AgendaListAdapter(R.layout.list_row_agenda, AgendaData.getInstance().getAgendaList());
+        setListAdapter(agendaListAdapter);
     }
 
     private class AgendaListAdapter extends BaseAdapter {

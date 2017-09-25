@@ -13,7 +13,16 @@ public class SpeakersData {
 
     private List<Speaker> speakerList = null;
 
-    public SpeakersData() {
+    private static SpeakersData instance = null;
+
+    public static SpeakersData getInstance() {
+        if(instance == null) {
+            instance = new SpeakersData();
+        }
+        return instance;
+    }
+
+    private SpeakersData() {
 
         this.speakerList = new ArrayList<Speaker>(11);
 

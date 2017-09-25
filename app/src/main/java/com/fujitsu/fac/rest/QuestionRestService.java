@@ -1,7 +1,6 @@
 package com.fujitsu.fac.rest;
 
 import com.fujitsu.fac.constants.RestConstants;
-import com.fujitsu.fac.domain.Attendee;
 import com.fujitsu.fac.utils.StreamUtil;
 
 import org.apache.http.HttpResponse;
@@ -14,18 +13,18 @@ import org.json.JSONObject;
 import java.io.InputStream;
 
 /**
- * Created by b.balote on 8/3/2017.
+ * Created by b.balote on 9/25/2017.
  */
 
-public class AttendeeRegistrationRestService {
+public class QuestionRestService {
 
-    public AttendeeRegistrationRestService() {
+    public QuestionRestService() {
     }
 
-    public String postAttendee(Attendee a) {
+    public String postQuestion(int uId, String question) {
 
         System.out.println("@ postAttendee()");
-        System.out.println(a.toString());
+        System.out.println(question);
 
         InputStream inputStream = null;
         String result = "";
@@ -33,17 +32,11 @@ public class AttendeeRegistrationRestService {
         try {
 
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(RestConstants.REGISTRATION_URL);
+            HttpPost httpPost = new HttpPost(RestConstants.QUESTION_URL);
 
             JSONObject jo = new JSONObject();
-            jo.accumulate("fNme", a.getFirstName());
-            jo.accumulate("lNme", a.getLastName());
-            jo.accumulate("email", a.getEmail());
-            jo.accumulate("compNme", a.getCompany());
-            jo.accumulate("pos", a.getPosition());
-            jo.accumulate("phne", a.getPhone());
-            jo.accumulate("mobile",a.getMobile());
-            jo.accumulate("role", a.getRole());
+            jo.accumulate("uId", uId);
+            jo.accumulate("qstn", question);
 
             StringEntity se = new StringEntity(jo.toString());
 
@@ -68,5 +61,4 @@ public class AttendeeRegistrationRestService {
         System.out.println(result);
         return result;
     }
-
 }

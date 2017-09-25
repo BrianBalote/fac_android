@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fujitsu.fac.R;
+import com.fujitsu.fac.rest.QuestionRestService;
 
 public class QuestionsActivity extends ListActivity {
 
@@ -122,10 +123,13 @@ public class QuestionsActivity extends ListActivity {
         input.setLines(2);
         builder.setView(input);
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String m_Text = input.getText().toString();
+                String question = input.getText().toString();
+
+                QuestionRestService questionRestService = new QuestionRestService();
+                questionRestService.postQuestion(123, question);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

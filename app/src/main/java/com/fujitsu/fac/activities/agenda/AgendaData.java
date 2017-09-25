@@ -13,11 +13,16 @@ public class AgendaData {
 
     private List<Agenda> agendaList;
 
-    public AgendaData() {
-        this.initAgendaData();
+    private static AgendaData instance = null;
+
+    public static AgendaData getInstance() {
+        if(instance == null) {
+            instance = new AgendaData();
+        }
+        return instance;
     }
 
-    private void initAgendaData() {
+    private AgendaData() {
         this.agendaList = new ArrayList<Agenda>();
 
         Agenda a1 = new Agenda();
@@ -60,7 +65,4 @@ public class AgendaData {
         return agendaList;
     }
 
-    public void setAgendaList(List<Agenda> agendaList) {
-        this.agendaList = agendaList;
-    }
 }

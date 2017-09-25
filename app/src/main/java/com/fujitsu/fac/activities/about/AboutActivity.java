@@ -32,10 +32,7 @@ public class AboutActivity extends ListActivity {
             }
         });
 
-        AboutData aboutData = new AboutData();
-        List<About> aboutList = aboutData.getAboutList();
-
-        AboutListAdapter aboutListAdapter = new AboutListAdapter(R.layout.list_row_about, aboutList);
+        AboutListAdapter aboutListAdapter = new AboutListAdapter(R.layout.list_row_about, AboutData.getInstance().getAboutList());
         this.setListAdapter(aboutListAdapter);
     }
 

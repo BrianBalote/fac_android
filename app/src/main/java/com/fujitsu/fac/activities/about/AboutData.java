@@ -13,7 +13,16 @@ public class AboutData {
 
     private List<About> aboutList = null;
 
-    public AboutData() {
+    private static AboutData instance = null;
+
+    public static AboutData getInstance() {
+        if(instance == null) {
+            instance = new AboutData();
+        }
+        return instance;
+    }
+
+    private AboutData() {
 
         this.aboutList = new ArrayList<About>(5);
 
