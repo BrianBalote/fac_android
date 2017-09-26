@@ -12,14 +12,12 @@
         <TextView
             android:id="@+id/text_about"
             style="@style/ListItemTitle"
-            android:visibility="gone"
             android:text="Q: Question"
             />
 
         <TextView
             android:id="@+id/text_details"
             style="@style/ListItemMultiLine"
-            android:visibility="gone"
             android:text="A: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             />
 

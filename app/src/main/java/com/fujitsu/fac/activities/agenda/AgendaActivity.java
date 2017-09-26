@@ -101,7 +101,6 @@ public class AgendaActivity extends ListActivity {
             if(TextUtils.isEmpty(a.getDescription())) {
                 textAgendaDescription.setVisibility(View.GONE);
             }
-
             return convertView;
         }
     }

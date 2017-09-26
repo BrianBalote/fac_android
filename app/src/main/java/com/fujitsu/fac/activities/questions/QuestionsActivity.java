@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.rest.QuestionRestService;
+import com.fujitsu.fac.utils.TypeFaceUtil;
 
 public class QuestionsActivity extends ListActivity {
 
@@ -30,6 +31,8 @@ public class QuestionsActivity extends ListActivity {
 
     private View backBtn;
 
+    private LayoutInflater inflater;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,9 @@ public class QuestionsActivity extends ListActivity {
             }
         });
 
+        inflater = (LayoutInflater) QuestionsActivity.this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         QuestionListAdapter questionListAdapter = new QuestionListAdapter(R.layout.list_row_question_topic, topics);
         setListAdapter(questionListAdapter);
     }
@@ -54,7 +60,6 @@ public class QuestionsActivity extends ListActivity {
 
         public QuestionListAdapter(int viewResourceId,
                                    String[] topicArr) {
-
             this.viewResourceId = viewResourceId;
             this.topicArr = topicArr;
         }
@@ -77,41 +82,23 @@ public class QuestionsActivity extends ListActivity {
         @Override
         public View getView(final int position, View convertView,
                             ViewGroup parent) {
-            View row = convertView;
-            MyPlaceHolder holder = null;
 
-            if (row == null) {
+            convertView = inflater.inflate(this.viewResourceId, parent, false);
 
-                LayoutInflater inflater = (LayoutInflater) QuestionsActivity.this
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(this.viewResourceId, parent, false);
-                holder = new MyPlaceHolder();
+            TextView textTopic = (TextView) convertView.findViewById(R.id.text_topic);
+            textTopic.setText(topicArr[position]);
+            textTopic.setTypeface(TypeFaceUtil.getFujitsuSansMedium(QuestionsActivity.this));
 
-                holder.textTopic = (TextView) row.findViewById(R.id.text_topic);
-
-                row.setTag(holder);
-
-            } else {
-
-                holder = (MyPlaceHolder) row.getTag();
-            }
-
-            holder.textTopic.setText(topicArr[position]);
-
-            row.setOnClickListener(new View.OnClickListener() {
+            convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     showDialog(topicArr[position]);
                 }
             });
 
-            return row;
+            return convertView;
         }
 
-        class MyPlaceHolder {
-
-            TextView textTopic;
-        }
     }
 
     private void showDialog(String title) {

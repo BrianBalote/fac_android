@@ -50,7 +50,6 @@ public class SpeakersData {
 
         Speaker s4 = new Speaker();
         s4.setName("Alon Anthony Rejano");
-        s4.setPosition("Market Analyst");
         s4.setCompany("IDC Philippines");
         s4.setImageSrc("alon_anthony_rejano.png");
         this.speakerList.add(s4);

@@ -20,6 +20,8 @@ public class AboutActivity extends ListActivity {
 
     private View backBtn;
 
+    private LayoutInflater inflater;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,11 @@ public class AboutActivity extends ListActivity {
             }
         });
 
-        AboutListAdapter aboutListAdapter = new AboutListAdapter(R.layout.list_row_about, AboutData.getInstance().getAboutList());
+        inflater = (LayoutInflater) AboutActivity.this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        AboutListAdapter aboutListAdapter = new AboutListAdapter(R.layout.list_row_about,
+                AboutData.getInstance().getAboutList());
         this.setListAdapter(aboutListAdapter);
     }
 
@@ -67,49 +73,27 @@ public class AboutActivity extends ListActivity {
         @Override
         public View getView(final int position, View convertView,
                             ViewGroup parent) {
-            View row = convertView;
-            MyPlaceHolder holder = null;
 
-            if (row == null) {
+            convertView = inflater.inflate(this.viewResourceId, parent, false);
 
-                LayoutInflater inflater = (LayoutInflater) AboutActivity.this
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(this.viewResourceId, parent, false);
-                holder = new MyPlaceHolder();
+            About f = aboutList.get(position);
 
-                holder.textAbout = (TextView) row.findViewById(R.id.text_about);
-                holder.textDetails = (TextView) row.findViewById(R.id.text_details);
+            TextView textAbout = (TextView) convertView.findViewById(R.id.text_about);
+            TextView textDetails = (TextView) convertView.findViewById(R.id.text_details);
 
-                row.setTag(holder);
+            textAbout.setTypeface(TypeFaceUtil.getFujitsuSansBold(AboutActivity.this));
+            textDetails.setTypeface(TypeFaceUtil.getFujitsuSansMedium(AboutActivity.this));
 
-            } else {
+            textAbout.setText(f.getAbout());
+            textDetails.setText(f.getDetails());
 
-                holder = (MyPlaceHolder) row.getTag();
+            if(TextUtils.isEmpty(f.getAbout())) {
+                textAbout.setVisibility(View.GONE);
             }
-
-            final About f = aboutList.get(position);
-
-            holder.textAbout.setText(f.getAbout());
-            holder.textDetails.setText(f.getDetails());
-
-            if(!TextUtils.isEmpty(f.getAbout())) {
-                holder.textAbout.setVisibility(View.VISIBLE);
+            if(TextUtils.isEmpty(f.getDetails())) {
+                textDetails.setVisibility(View.GONE);
             }
-
-            if(!TextUtils.isEmpty(f.getDetails())) {
-                holder.textDetails.setVisibility(View.VISIBLE);
-            }
-
-            holder.textAbout.setTypeface(TypeFaceUtil.getFujitsuSansBold(AboutActivity.this));
-            holder.textDetails.setTypeface(TypeFaceUtil.getFujitsuSansRegular(AboutActivity.this));
-
-            return row;
-        }
-
-        class MyPlaceHolder {
-
-            TextView textAbout;
-            TextView textDetails;
+            return convertView;
         }
     }
 }

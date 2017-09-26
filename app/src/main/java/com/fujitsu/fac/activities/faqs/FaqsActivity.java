@@ -10,13 +10,17 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.fujitsu.fac.R;
+import com.fujitsu.fac.activities.about.AboutActivity;
 import com.fujitsu.fac.domain.FAQ;
+import com.fujitsu.fac.utils.TypeFaceUtil;
 
 import java.util.List;
 
 public class FaqsActivity extends ListActivity {
 
     private View backBtn;
+
+    private LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,9 @@ public class FaqsActivity extends ListActivity {
             }
         });
 
+        inflater = (LayoutInflater) FaqsActivity.this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         FaqsListAdapter faqsListAdapter = new FaqsListAdapter(R.layout.list_row_faqs, FaqsData.getInstance().getFaqList());
         setListAdapter(faqsListAdapter);
     }
@@ -42,7 +49,6 @@ public class FaqsActivity extends ListActivity {
 
         public FaqsListAdapter(int viewResourceId,
                                List<FAQ> faqsList) {
-
             this.viewResourceId = viewResourceId;
             this.faqsList = faqsList;
         }
@@ -65,38 +71,26 @@ public class FaqsActivity extends ListActivity {
         @Override
         public View getView(final int position, View convertView,
                             ViewGroup parent) {
-            View row = convertView;
-            MyPlaceHolder holder = null;
 
-            if (row == null) {
+            convertView = inflater.inflate(this.viewResourceId, parent, false);
 
-                LayoutInflater inflater = (LayoutInflater) FaqsActivity.this
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(this.viewResourceId, parent, false);
-                holder = new MyPlaceHolder();
+            TextView textQuestion = (TextView) convertView.findViewById(R.id.text_question);
+            TextView textAnswer = (TextView) convertView.findViewById(R.id.text_answer);
 
-                holder.textQuestion = (TextView) row.findViewById(R.id.text_question);
-                holder.textAnswer = (TextView) row.findViewById(R.id.text_answer);
-
-                row.setTag(holder);
-
-            } else {
-
-                holder = (MyPlaceHolder) row.getTag();
-            }
+            textQuestion.setTypeface(TypeFaceUtil.getFujitsuSansBold(FaqsActivity.this));
+            textAnswer.setTypeface(TypeFaceUtil.getFujitsuSansMedium(FaqsActivity.this));
 
             final FAQ f = faqsList.get(position);
 
-            holder.textQuestion.setText(f.getQuestion());
-            holder.textAnswer.setText(f.getAnswer());
+            StringBuilder sb = new StringBuilder();
+            sb.append(f.getQuestion());
+            sb.append("\n");
 
-            return row;
+            textQuestion.setText(sb.toString());
+            textAnswer.setText(f.getAnswer());
+
+            return convertView;
         }
 
-        class MyPlaceHolder {
-
-            TextView textQuestion;
-            TextView textAnswer;
-        }
     }
 }

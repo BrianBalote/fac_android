@@ -95,7 +95,7 @@ public class AgendaData {
         a9.setSpeakers("\nSpeaker:");
         StringBuilder sb5 = new StringBuilder();
         sb5.append("Alfee Lee\n");
-        sb5.append("VP Offering Development");
+        sb5.append("VP Offering Development\n");
         sb5.append("Fujitsu ASIA PTE LTD");
         a9.setDescription(sb5.toString());
         this.agendaList.add(a9);

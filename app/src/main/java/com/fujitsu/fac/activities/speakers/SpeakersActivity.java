@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.domain.Speaker;
+import com.fujitsu.fac.utils.TypeFaceUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +24,8 @@ import java.util.List;
 public class SpeakersActivity extends ListActivity {
 
     private View backBtn;
+
+    private LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class SpeakersActivity extends ListActivity {
             }
         });
 
+        inflater = (LayoutInflater) SpeakersActivity.this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         SpeakersListAdapter speakersListAdapter = new SpeakersListAdapter(R.layout.list_row_speakers, SpeakersData.getInstance().getSpeakerList());
         setListAdapter(speakersListAdapter);
     }
@@ -68,54 +74,40 @@ public class SpeakersActivity extends ListActivity {
         @Override
         public View getView(final int position, View convertView,
                             ViewGroup parent) {
-            View row = convertView;
-            MyPlaceHolder holder = null;
 
-            if (row == null) {
+            convertView = inflater.inflate(this.viewResourceId, parent, false);
 
-                LayoutInflater inflater = (LayoutInflater) SpeakersActivity.this
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(this.viewResourceId, parent, false);
-                holder = new MyPlaceHolder();
+            ImageView imgPortrait = (ImageView) convertView.findViewById(R.id.img_portrait);
+            TextView textName = (TextView) convertView.findViewById(R.id.text_name);
+            TextView textPosition = (TextView) convertView.findViewById(R.id.text_position);
+            TextView textCompany = (TextView) convertView.findViewById(R.id.text_company);
+            TextView textBio = (TextView) convertView.findViewById(R.id.text_bio);
 
-                holder.imgPortrait = (ImageView) row.findViewById(R.id.img_portrait);
-                holder.textName = (TextView) row.findViewById(R.id.text_name);
-                holder.textPosition = (TextView) row.findViewById(R.id.text_position);
-                holder.textCompany = (TextView) row.findViewById(R.id.text_company);
-                holder.textBio = (TextView) row.findViewById(R.id.text_bio);
-
-                row.setTag(holder);
-
-            } else {
-
-                holder = (MyPlaceHolder) row.getTag();
-            }
+            textName.setTypeface(TypeFaceUtil.getFujitsuSansBold(SpeakersActivity.this));
+            textPosition.setTypeface(TypeFaceUtil.getFujitsuSansMedium(SpeakersActivity.this));
+            textCompany.setTypeface(TypeFaceUtil.getFujitsuSansMedium(SpeakersActivity.this));
+            textBio.setTypeface(TypeFaceUtil.getFujitsuSansMedium(SpeakersActivity.this));
 
             final Speaker s = speakersList.get(position);
 
-            holder.textName.setText(s.getName());
-            holder.textPosition.setText(s.getPosition());
-            holder.textCompany.setText(s.getCompany());
-            holder.textBio.setText(s.getBio());
+            textName.setText(s.getName());
+            textPosition.setText(s.getPosition());
+            textCompany.setText(s.getCompany());
+            textBio.setText(s.getBio());
 
-            if(s.getBio().length() <= 0) {
-                holder.textBio.setVisibility(View.GONE);
+            if(TextUtils.isEmpty(s.getPosition())) {
+                textPosition.setVisibility(View.GONE);
+            }
+            if(TextUtils.isEmpty(s.getBio())) {
+                textBio.setVisibility(View.GONE);
             }
 
             Bitmap b = loadBitmapFromAssets(s.getImageSrc());
-            holder.imgPortrait.setImageBitmap(b);
+            imgPortrait.setImageBitmap(b);
 
-            return row;
+            return convertView;
         }
 
-        class MyPlaceHolder {
-
-            ImageView imgPortrait;
-            TextView textName;
-            TextView textPosition;
-            TextView textCompany;
-            TextView textBio;
-        }
     }
 
     private Bitmap loadBitmapFromAssets(String imageName) {
