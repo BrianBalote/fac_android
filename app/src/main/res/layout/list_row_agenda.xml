@@ -12,44 +12,25 @@
         <TextView
             android:id="@+id/text_agenda_name"
             style="@style/ListItemTitle"
+            android:textColor="@color/top_bar_color"
             android:text="Agenda Name" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/text_agenda_date"
-                style="@style/ListItemDetails"
-                android:text="Agenda Date"
-                 />
-
-            <TextView
-                android:id="@+id/text_agenda_start_time"
-                style="@style/ListItemDetails"
-                android:text="Start Time"
-                 />
-
-            <TextView
-                android:id="@+id/text_agenda_end_time"
-                style="@style/ListItemDetails"
-                android:text="End Time"
-                 />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/text_agenda_time"
+            style="@style/ListItemDetails"
+            android:text="Time"
+             />
 
         <TextView
             android:id="@+id/text_agenda_speakers"
             style="@style/ListItemDetails"
-            android:text="Agenda Speakers"
+            android:text="Speakers"
              />
 
         <TextView
             android:id="@+id/text_agenda_description"
             style="@style/ListItemDetails"
-            android:text="Agenda Description"
+            android:text="Description"
              />
 
     </LinearLayout>

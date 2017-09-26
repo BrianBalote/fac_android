@@ -3,6 +3,7 @@ package com.fujitsu.fac.activities.agenda;
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.domain.Agenda;
+import com.fujitsu.fac.utils.TypeFaceUtil;
 
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class AgendaActivity extends ListActivity {
 
     private static final String TAG = "AgendaActivity";
 
+    private LayoutInflater inflater;
     private View backBtn;
 
     @Override
@@ -33,6 +36,9 @@ public class AgendaActivity extends ListActivity {
             }
         });
 
+        inflater = (LayoutInflater) AgendaActivity.this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         AgendaListAdapter agendaListAdapter = new AgendaListAdapter(R.layout.list_row_agenda, AgendaData.getInstance().getAgendaList());
         setListAdapter(agendaListAdapter);
     }
@@ -44,7 +50,6 @@ public class AgendaActivity extends ListActivity {
 
         public AgendaListAdapter(int viewResourceId,
                                  List<Agenda> agendaList) {
-
             this.viewResourceId = viewResourceId;
             this.agendaList = agendaList;
         }
@@ -67,50 +72,37 @@ public class AgendaActivity extends ListActivity {
         @Override
         public View getView(final int position, View convertView,
                             ViewGroup parent) {
-            View row = convertView;
-            MyPlaceHolder holder = null;
 
-            if (row == null) {
+            convertView = inflater.inflate(this.viewResourceId, parent, false);
 
-                LayoutInflater inflater = (LayoutInflater) AgendaActivity.this
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                row = inflater.inflate(this.viewResourceId, parent, false);
-                holder = new MyPlaceHolder();
+            Agenda a = agendaList.get(position);
 
-                holder.textAgendaName = (TextView) row.findViewById(R.id.text_agenda_name);
-                holder.textAgendaDate = (TextView) row.findViewById(R.id.text_agenda_date);
-                holder.textAgendaStartTime = (TextView) row.findViewById(R.id.text_agenda_start_time);
-                holder.textAgendaEndTime = (TextView) row.findViewById(R.id.text_agenda_end_time);
-                holder.textAgendaSpeakers = (TextView) row.findViewById(R.id.text_agenda_speakers);
-                holder.textAgendaDescription = (TextView) row.findViewById(R.id.text_agenda_description);
+            TextView textAgendaName = (TextView) convertView.findViewById(R.id.text_agenda_name);
+            TextView textAgendaTime = (TextView) convertView.findViewById(R.id.text_agenda_time);
+            TextView textAgendaSpeakers = (TextView) convertView.findViewById(R.id.text_agenda_speakers);
+            TextView textAgendaDescription = (TextView) convertView.findViewById(R.id.text_agenda_description);
 
-                row.setTag(holder);
+            textAgendaName.setTypeface(TypeFaceUtil.getFujitsuSansBold(AgendaActivity.this));
+            textAgendaTime.setTypeface(TypeFaceUtil.getFujitsuSansMedium(AgendaActivity.this));
+            textAgendaSpeakers.setTypeface(TypeFaceUtil.getFujitsuSansBold(AgendaActivity.this));
+            textAgendaDescription.setTypeface(TypeFaceUtil.getFujitsuSansMedium(AgendaActivity.this));
 
-            } else {
+            textAgendaName.setText(a.getName());
+            textAgendaTime.setText(a.getTime());
+            textAgendaSpeakers.setText(a.getSpeakers());
+            textAgendaDescription.setText(a.getDescription());
 
-                holder = (MyPlaceHolder) row.getTag();
+            if(TextUtils.isEmpty(a.getTime())) {
+                textAgendaTime.setVisibility(View.GONE);
+            }
+            if(TextUtils.isEmpty(a.getSpeakers())) {
+                textAgendaSpeakers.setVisibility(View.GONE);
+            }
+            if(TextUtils.isEmpty(a.getDescription())) {
+                textAgendaDescription.setVisibility(View.GONE);
             }
 
-            final Agenda a = agendaList.get(position);
-
-            holder.textAgendaName.setText(a.getName());
-            holder.textAgendaDate.setText(a.getDate());
-            holder.textAgendaStartTime.setText(a.getStartTime());
-            holder.textAgendaEndTime.setText(a.getEndTime());
-            holder.textAgendaDescription.setText(a.getDescription());
-            holder.textAgendaSpeakers.setText(a.getSpeakers());
-
-            return row;
-        }
-
-        class MyPlaceHolder {
-
-            TextView textAgendaName;
-            TextView textAgendaDate;
-            TextView textAgendaStartTime;
-            TextView textAgendaEndTime;
-            TextView textAgendaSpeakers;
-            TextView textAgendaDescription;
+            return convertView;
         }
     }
 }

@@ -6,14 +6,16 @@ package com.fujitsu.fac.domain;
 
 public class Agenda {
 
-    private String name = "";
-    private String date = "";
-    private String startTime = "";
-    private String endTime = "";
-    private String speakers = "";
-    private String description = "";
+    private String name;
+    private String time;
+    private String speakers;
+    private String description;
 
     public Agenda() {
+        name = "";
+        time = "";
+        speakers = "";
+        description = "";
     }
 
     public String getName() {
@@ -32,35 +34,19 @@ public class Agenda {
         this.description = description;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
     public String getSpeakers() {
         return speakers;
     }
 
     public void setSpeakers(String speakers) {
         this.speakers = speakers;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

@@ -92,7 +92,7 @@ public class SpeakersData {
 
         Speaker s10 = new Speaker();
         s10.setName("Vasudevan Venkatakrishnan");
-        s10.setPosition("Business Developmnent - AP");
+        s10.setPosition("Business Developmnent - APAC");
         s10.setCompany("Ruckus Wireless");
         s10.setImageSrc("vasudevan_venkatakrishnan.png");
         this.speakerList.add(s10);

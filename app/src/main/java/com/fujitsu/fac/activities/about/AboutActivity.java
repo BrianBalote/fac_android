@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.domain.About;
+import com.fujitsu.fac.utils.TypeFaceUtil;
 
 import java.util.List;
 
@@ -98,6 +99,9 @@ public class AboutActivity extends ListActivity {
             if(!TextUtils.isEmpty(f.getDetails())) {
                 holder.textDetails.setVisibility(View.VISIBLE);
             }
+
+            holder.textAbout.setTypeface(TypeFaceUtil.getFujitsuSansBold(AboutActivity.this));
+            holder.textDetails.setTypeface(TypeFaceUtil.getFujitsuSansRegular(AboutActivity.this));
 
             return row;
         }
