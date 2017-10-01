@@ -21,7 +21,7 @@ public class QuestionRestService {
     public QuestionRestService() {
     }
 
-    public String postQuestion(int uId, String question) {
+    public String postQuestion(String email, String question) {
 
         System.out.println("@ postAttendee()");
         System.out.println(question);
@@ -35,7 +35,7 @@ public class QuestionRestService {
             HttpPost httpPost = new HttpPost(RestConstants.QUESTION_URL);
 
             JSONObject jo = new JSONObject();
-            jo.accumulate("uId", uId);
+            jo.accumulate("email", email);
             jo.accumulate("qstn", question);
 
             StringEntity se = new StringEntity(jo.toString());

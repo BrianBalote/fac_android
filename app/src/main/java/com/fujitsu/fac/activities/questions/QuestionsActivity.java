@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.rest.QuestionRestService;
+import com.fujitsu.fac.services.EmailPersistenceService;
 import com.fujitsu.fac.utils.TypeFaceUtil;
 
 public class QuestionsActivity extends ListActivity {
@@ -116,7 +117,7 @@ public class QuestionsActivity extends ListActivity {
                 String question = input.getText().toString();
 
                 QuestionRestService questionRestService = new QuestionRestService();
-                questionRestService.postQuestion(123, question);
+                questionRestService.postQuestion(EmailPersistenceService.getEmail(QuestionsActivity.this), question);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

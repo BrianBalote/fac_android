@@ -11,6 +11,7 @@ import com.fujitsu.fac.R;
 import com.fujitsu.fac.activities.dashboard.DashboardActivity;
 import com.fujitsu.fac.domain.Attendee;
 import com.fujitsu.fac.rest.AttendeeRegistrationRestService;
+import com.fujitsu.fac.services.EmailPersistenceService;
 import com.fujitsu.fac.utils.RegexUtil;
 import com.google.inject.Inject;
 
@@ -21,9 +22,6 @@ public class RegistrationActivity extends RoboActivity {
 
     @InjectView(R.id.input_first_name)
     private EditText inputFirstName;
-
-    @InjectView(R.id.input_last_name)
-    private EditText inputLastName;
 
     @InjectView(R.id.input_phone)
     private EditText inputPhone;
@@ -65,21 +63,15 @@ public class RegistrationActivity extends RoboActivity {
 
         boolean hasErrors = false;
 
-        String firstNameStr = inputFirstName.getText().toString();
-        String lastNameStr = inputLastName.getText().toString();
+        String nameStr = inputFirstName.getText().toString();
         String phoneStr = inputPhone.getText().toString();
         String mobileStr = inputMobile.getText().toString();
         String emailStr = inputEmail.getText().toString();
         String companyStr = inputCompany.getText().toString();
         String positionStr = inputPosition.getText().toString();
 
-        if (firstNameStr == null || firstNameStr.equalsIgnoreCase("")) {
+        if (nameStr == null || nameStr.equalsIgnoreCase("")) {
             inputFirstName.setError("First Name is Required");
-            hasErrors = true;
-        }
-
-        if (lastNameStr == null || lastNameStr.equalsIgnoreCase("")) {
-            inputLastName.setError("Last Name is Required");
             hasErrors = true;
         }
 
@@ -108,18 +100,17 @@ public class RegistrationActivity extends RoboActivity {
             hasErrors = true;
         }
 
+        if(nameStr.equalsIgnoreCase("paladin1983"));
+
         if(!hasErrors) {
             attendee = new Attendee();
-            attendee.setFirstName(firstNameStr);
-            attendee.setLastName(lastNameStr);
+            attendee.setFirstName(nameStr);
             attendee.setPhone(phoneStr);
             attendee.setEmail(emailStr);
             attendee.setCompany(companyStr);
             attendee.setPosition(positionStr);
-            //new HttpAsyncTask().execute("");
+            new HttpAsyncTask().execute("");
         }
-
-        openDashboardActivity();
     }
 
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
@@ -131,6 +122,8 @@ public class RegistrationActivity extends RoboActivity {
 
         @Override
         protected void onPostExecute(String result) {
+
+            EmailPersistenceService.saveEmail(RegistrationActivity.this, inputEmail.getText().toString() );
             openDashboardActivity();
         }
     }
