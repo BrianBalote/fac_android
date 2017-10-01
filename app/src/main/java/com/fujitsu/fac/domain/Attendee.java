@@ -6,32 +6,14 @@ package com.fujitsu.fac.domain;
 
 public class Attendee {
 
-    private String firstName = "";
-    private String lastName = "";
+    private String name = "";
     private String email = "";
     private String company = "";
     private String position = "";
     private String phone = "";
     private String mobile = "";
-    private String role = "";
 
     public Attendee() {
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -66,14 +48,6 @@ public class Attendee {
         this.phone = phone;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getMobile() {
         return mobile;
     }
@@ -82,15 +56,20 @@ public class Attendee {
         this.mobile = mobile;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("firstName: ");
-        sb.append(firstName);
-
-        sb.append(" | lastName: ");
-        sb.append(lastName);
+        sb.append("name: ");
+        sb.append(name);
 
         sb.append(" | email: ");
         sb.append(email);
@@ -103,9 +82,6 @@ public class Attendee {
 
         sb.append(" | phoneNumber: ");
         sb.append(phone);
-
-        sb.append(" | role: ");
-        sb.append(role);
 
         return sb.toString();
 

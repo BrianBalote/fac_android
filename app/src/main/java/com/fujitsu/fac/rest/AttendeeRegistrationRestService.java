@@ -36,20 +36,18 @@ public class AttendeeRegistrationRestService {
             HttpPost httpPost = new HttpPost(RestConstants.REGISTRATION_URL);
 
             JSONObject jo = new JSONObject();
-            jo.accumulate("fNme", a.getFirstName());
-            jo.accumulate("lNme", a.getLastName());
+            jo.accumulate("nme", a.getName());
             jo.accumulate("email", a.getEmail());
             jo.accumulate("compNme", a.getCompany());
             jo.accumulate("pos", a.getPosition());
             jo.accumulate("phne", a.getPhone());
             jo.accumulate("mobile",a.getMobile());
-            jo.accumulate("role", a.getRole());
 
             StringEntity se = new StringEntity(jo.toString());
 
             httpPost.setEntity(se);
 
-            httpPost.setHeader("Accept", "application/json");
+            //httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
             httpPost.setHeader("Origin", RestConstants.API_URL);
 

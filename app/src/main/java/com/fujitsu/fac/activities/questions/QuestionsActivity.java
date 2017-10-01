@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -12,10 +13,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fujitsu.fac.R;
+import com.fujitsu.fac.activities.registration.RegistrationActivity;
 import com.fujitsu.fac.rest.QuestionRestService;
 import com.fujitsu.fac.services.EmailPersistenceService;
+import com.fujitsu.fac.utils.NetworkUtil;
 import com.fujitsu.fac.utils.TypeFaceUtil;
 
 public class QuestionsActivity extends ListActivity {
@@ -33,6 +37,10 @@ public class QuestionsActivity extends ListActivity {
     private View backBtn;
 
     private LayoutInflater inflater;
+
+    private QuestionRestService questionRestService;
+
+    private String question = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +60,8 @@ public class QuestionsActivity extends ListActivity {
 
         QuestionListAdapter questionListAdapter = new QuestionListAdapter(R.layout.list_row_question_topic, topics);
         setListAdapter(questionListAdapter);
+
+        questionRestService = new QuestionRestService();
     }
 
     private class QuestionListAdapter extends BaseAdapter {
@@ -114,10 +124,14 @@ public class QuestionsActivity extends ListActivity {
         builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String question = input.getText().toString();
 
-                QuestionRestService questionRestService = new QuestionRestService();
-                questionRestService.postQuestion(EmailPersistenceService.getEmail(QuestionsActivity.this), question);
+                if(!NetworkUtil.isNetworkAvailable(QuestionsActivity.this)) {
+                    Toast.makeText(QuestionsActivity.this, "Internet is not available",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    question = input.getText().toString();
+                    new HttpAsyncTask().execute("");
+                }
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -128,5 +142,20 @@ public class QuestionsActivity extends ListActivity {
         });
 
         builder.show();
+    }
+
+    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return questionRestService.postQuestion(EmailPersistenceService.getEmail(QuestionsActivity.this), question);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Toast.makeText(QuestionsActivity.this, "Question sent.",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 }

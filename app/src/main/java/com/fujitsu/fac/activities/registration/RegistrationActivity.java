@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.activities.dashboard.DashboardActivity;
 import com.fujitsu.fac.domain.Attendee;
 import com.fujitsu.fac.rest.AttendeeRegistrationRestService;
 import com.fujitsu.fac.services.EmailPersistenceService;
+import com.fujitsu.fac.utils.NetworkUtil;
 import com.fujitsu.fac.utils.RegexUtil;
 import com.google.inject.Inject;
 
@@ -100,15 +102,20 @@ public class RegistrationActivity extends RoboActivity {
             hasErrors = true;
         }
 
-        if(nameStr.equalsIgnoreCase("paladin1983"));
+        if(!NetworkUtil.isNetworkAvailable(RegistrationActivity.this)) {
+            Toast.makeText(RegistrationActivity.this, "Internet is not available",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
 
         if(!hasErrors) {
             attendee = new Attendee();
-            attendee.setFirstName(nameStr);
+            attendee.setName(nameStr);
             attendee.setPhone(phoneStr);
             attendee.setEmail(emailStr);
             attendee.setCompany(companyStr);
             attendee.setPosition(positionStr);
+            attendee.setMobile(mobileStr);
             new HttpAsyncTask().execute("");
         }
     }
