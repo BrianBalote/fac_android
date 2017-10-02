@@ -8,7 +8,7 @@ import android.os.Handler;
 import com.fujitsu.fac.R;
 import com.fujitsu.fac.activities.dashboard.DashboardActivity;
 import com.fujitsu.fac.activities.registration.RegistrationActivity;
-import com.fujitsu.fac.services.RegistrationService;
+import com.fujitsu.fac.services.EmailPersistenceService;
 
 public class SplashActivity extends Activity {
 
@@ -24,8 +24,10 @@ public class SplashActivity extends Activity {
     }
 
     private boolean checkIfRegistered() {
-        RegistrationService rs = new RegistrationService();
-        return rs.retrieveRegistrationFlag(this);
+        if(EmailPersistenceService.getEmail(SplashActivity.this).equalsIgnoreCase("")) {
+            return false;
+        }
+        return true;
     }
 
     private Runnable mUpdateTimeTask = new Runnable() {
